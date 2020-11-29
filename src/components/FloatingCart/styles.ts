@@ -32,6 +32,16 @@ export const CartButton = styled.TouchableOpacity`
   align-items: center;
 `;
 
+export const CartNoButton = styled.View`
+  flex-direction: row;
+  background: #e83f5b;
+
+  flex: 1;
+  padding: 20px 20px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const CartButtonText = styled.Text`
   font-weight: bold;
   color: #fff;
