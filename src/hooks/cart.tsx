@@ -4,11 +4,9 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useMemo,
 } from 'react';
 
 import AsyncStorage from '@react-native-community/async-storage';
-import formatValue from '../utils/formatValue';
 
 interface Product {
   id: string;
@@ -87,10 +85,11 @@ const CartProvider: React.FC = ({ children }) => {
 
   const decrement = useCallback(
     async id => {
-      let newProducts = [];
+      let newProducts: Product[] = [];
       const indexProduct = products.findIndex(product => product.id === id);
       if (products[indexProduct].quantity - 1 === 0) {
-        newProducts = products.splice(indexProduct, 1);
+        if (products.length === 1) newProducts = [];
+        else newProducts = products.splice(indexProduct, 1);
       } else {
         newProducts = products.map(product => {
           if (product.id === id) {
